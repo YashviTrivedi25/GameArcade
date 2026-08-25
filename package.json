@@ -1,0 +1,12 @@
+{
+  "name": "paper-arcade",
+  "version": "1.0.0",
+  "description": "Paper Arcade - Clean Fullstack Arcade with Python (Flask) Backend and Vanilla JavaScript Frontend",
+  "type": "module",
+  "scripts": {
+    "start": "python3 backend/app.py",
+    "dev": "python3 backend/app.py"
+  },
+  "author": "Paper Arcade",
+  "license": "MIT"
+}

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paper Arcade — Three Games. Endless Rematches.</title>
+  <meta name="description" content="Classic arcade games on a tactile paper grid. Play Minimax Tic Tac Toe, Rock Paper Scissors, and Hangman.">
+  <link rel="stylesheet" href="./css/paper-arcade.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕹️</text></svg>">
+</head>
+<body>
+
+  <!-- ==================== ARCADE HEADER ==================== -->
+  <header>
+    <a href="#lobby" data-view="lobby" class="logo-brand" aria-label="Paper Arcade Lobby">
+      <span class="logo-icon chunky">🕹️</span>
+      <span class="logo-text">ARCADE</span>
+    </a>
+
+    <nav class="game-nav">
+      <a href="#lobby" data-view="lobby" class="chunky bg-paper">Lobby</a>
+      <a href="#hands" data-view="hands" class="chunky bg-paper">Hands</a>
+      <a href="#grid" data-view="grid" class="chunky bg-paper">Grid</a>
+      <a href="#words" data-view="words" class="chunky bg-paper">Words</a>
+      <button id="sound-toggle-btn" class="chunky bg-secondary sound-toggle-btn" aria-label="Toggle Sound">🔊 Sound FX</button>
+    </nav>
+  </header>
+
+  <!-- ==================== MAIN GAME CONTAINER ==================== -->
+  <main>
+
+    <!-- ── 1. LOBBY VIEW ── -->
+    <section id="view-lobby" class="active">
+      <div class="game-banner">
+        <div>
+          <p class="table-tag">ARCADE FLOOR</p>
+          <h1 class="game-title">Paper Arcade</h1>
+        </div>
+        <span class="chunky bg-secondary status-badge">3 TABLES ACTIVE</span>
+      </div>
+
+      <div class="lobby-grid">
+        <!-- Table 01: Hands -->
+        <a href="#hands" data-view="hands" class="panel game-card">
+          <div>
+            <div class="game-card-icon">✊ ✋ ✌️</div>
+            <p class="game-card-table">TABLE 01</p>
+            <h2 class="game-card-title">Hands</h2>
+            <p class="game-card-desc">Rock, Paper, Scissors against a predictive bot. Chase the winning streak.</p>
+          </div>
+          <span class="chunky bg-primary text-primary-fg" style="padding: 0.6rem 1rem; width: 100%;">Play Hands →</span>
+        </a>
+
+        <!-- Table 02: Grid -->
+        <a href="#grid" data-view="grid" class="panel game-card">
+          <div>
+            <div class="game-card-icon">❌ ⭕ ❌</div>
+            <p class="game-card-table">TABLE 02</p>
+            <h2 class="game-card-title">Tic Tac Toe</h2>
+            <p class="game-card-desc">Play Tic Tac Toe against a perfect Minimax AI bot. Force the draw if you can.</p>
+          </div>
+          <span class="chunky bg-primary text-primary-fg" style="padding: 0.6rem 1rem; width: 100%;">Play Grid →</span>
+        </a>
+
+        <!-- Table 03: Words -->
+        <a href="#words" data-view="words" class="panel game-card">
+          <div>
+            <div class="game-card-icon">🔤 📜 ✏️</div>
+            <p class="game-card-table">TABLE 03</p>
+            <h2 class="game-card-title">Hangman</h2>
+            <p class="game-card-desc">Classic word guessing on paper. Crack the secret word before the 6th stroke.</p>
+          </div>
+          <span class="chunky bg-primary text-primary-fg" style="padding: 0.6rem 1rem; width: 100%;">Play Words →</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ── 2. HANDS (ROCK PAPER SCISSORS) VIEW ── -->
+    <section id="view-hands" class="hidden">
+      <div class="game-banner">
+        <div>
+          <p class="table-tag">TABLE 01</p>
+          <h1 class="game-title">Rock Paper Scissors</h1>
+        </div>
+        <span class="chunky bg-accent text-accent-fg status-badge">vs BOT</span>
+      </div>
+
+      <div class="game-layout">
+        <!-- Arena Box -->
+        <div class="panel rps-stage">
+          <!-- Series Tracker Banner -->
+          <div id="rps-series-tracker" class="ticket" style="width: 100%; padding: 0.75rem 1rem;">
+            <!-- Match series info rendered via rps.js -->
+          </div>
+
+          <p id="rps-status-text" class="turn-status-text">Choose your hand below</p>
+
+          <div class="rps-arena">
+            <div id="rps-player-card" class="fighter-card">
+              <div class="fighter-emoji">🫲</div>
+              <div class="fighter-name">YOU</div>
+            </div>
+
+            <div class="vs-badge chunky bg-secondary">VS</div>
+
+            <div id="rps-bot-card" class="fighter-card">
+              <div class="fighter-emoji">🫱</div>
+              <div class="fighter-name">BOT</div>
+            </div>
+          </div>
+
+          <div class="rps-choices">
+            <button class="chunky rps-choice-btn" data-move="rock" aria-label="Throw Rock">
+              <span class="choice-icon">🪨</span>
+              <span>Rock</span>
+            </button>
+            <button class="chunky rps-choice-btn" data-move="paper" aria-label="Throw Paper">
+              <span class="choice-icon">📄</span>
+              <span>Paper</span>
+            </button>
+            <button class="chunky rps-choice-btn" data-move="scissors" aria-label="Throw Scissors">
+              <span class="choice-icon">✂️</span>
+              <span>Scissors</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Scorecard Sidebar -->
+        <aside class="space-y-4" style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="panel scorecard-panel">
+            <p class="scorecard-title">SCORECARD</p>
+            <div class="scorecard-row">
+              <span class="scorecard-label">You</span>
+              <span id="rps-score-player" class="scorecard-value player">0</span>
+            </div>
+            <div class="scorecard-row">
+              <span class="scorecard-label">Ties</span>
+              <span id="rps-score-ties" class="scorecard-value draw">0</span>
+            </div>
+            <div class="scorecard-row">
+              <span class="scorecard-label">Bot</span>
+              <span id="rps-score-bot" class="scorecard-value bot">0</span>
+            </div>
+            <div class="scorecard-row" style="margin-top: 0.5rem; padding-top: 0.5rem; border-top: 2px dashed var(--ink);">
+              <span class="scorecard-label">Win Streak</span>
+              <span id="rps-streak-count" class="font-mono text-sm font-bold">0 (Best: 0)</span>
+            </div>
+          </div>
+
+          <div class="panel scorecard-panel" style="gap: 0.5rem;">
+            <label for="rps-mode-select" class="scorecard-title">MATCH FORMAT</label>
+            <select id="rps-mode-select" class="chunky" style="padding: 0.5rem; font-size: 0.85rem; width: 100%;">
+              <option value="best3" selected>Best of 3 (First to 2)</option>
+              <option value="best5">Best of 5 (First to 3)</option>
+              <option value="endless">Endless Rematches</option>
+            </select>
+            <button id="rps-reset-series-btn" class="chunky bg-secondary" style="margin-top: 0.5rem; padding: 0.5rem; font-size: 0.8rem; width: 100%;">
+              🔄 Reset Match Series
+            </button>
+          </div>
+
+          <div class="ticket p-5" style="padding: 1rem;">
+            <p class="font-bold text-xs uppercase mb-2">Round History</p>
+            <div id="rps-history-list" class="rps-history-list">
+              <p class="text-xs text-muted">No rounds played yet.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ── 3. GRID (TIC TAC TOE) VIEW ── -->
+    <section id="view-grid" class="hidden">
+      <div class="game-banner">
+        <div>
+          <p class="table-tag">TABLE 02</p>
+          <h1 class="game-title">Tic Tac Toe</h1>
+        </div>
+        <span class="chunky bg-accent text-accent-fg status-badge">vs BOT</span>
+      </div>
+
+      <div class="game-layout">
+        <!-- 3x3 Board Box -->
+        <div class="panel board-container">
+          <p id="ttt-status-text" class="turn-status-text">Your turn (X) — pick a square</p>
+          <div id="ttt-grid" class="ttt-grid" role="grid">
+            <!-- 9 cells rendered via ttt.js -->
+          </div>
+        </div>
+
+        <!-- Scorecard Sidebar -->
+        <aside class="space-y-4" style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="panel scorecard-panel">
+            <p class="scorecard-title">SCORECARD</p>
+            <div class="scorecard-row">
+              <span class="scorecard-label">You (X)</span>
+              <span id="ttt-score-player" class="scorecard-value player">0</span>
+            </div>
+            <div class="scorecard-row">
+              <span class="scorecard-label">Draws</span>
+              <span id="ttt-score-draws" class="scorecard-value draw">0</span>
+            </div>
+            <div class="scorecard-row">
+              <span class="scorecard-label">Bot (O)</span>
+              <span id="ttt-score-bot" class="scorecard-value bot">0</span>
+            </div>
+          </div>
+
+          <div class="panel scorecard-panel" style="gap: 0.5rem;">
+            <label for="ttt-difficulty-select" class="scorecard-title">BOT DIFFICULTY</label>
+            <select id="ttt-difficulty-select" class="chunky" style="padding: 0.5rem; font-size: 0.85rem; width: 100%;">
+              <option value="impossible" selected>Impossible (Minimax)</option>
+              <option value="medium">Medium (Tactical)</option>
+              <option value="easy">Easy (Casual)</option>
+            </select>
+          </div>
+
+          <div class="ticket" style="padding: 1rem;">
+            The bot calculates optimal Minimax states. Grinding out draws is the real game!
+          </div>
+
+          <button id="ttt-new-round-btn" class="chunky bg-secondary" style="padding: 0.75rem 1rem; width: 100%;">
+            New round
+          </button>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ── 4. WORDS (HANGMAN) VIEW ── -->
+    <section id="view-words" class="hidden">
+      <div class="game-banner">
+        <div>
+          <p class="table-tag">TABLE 03</p>
+          <h1 class="game-title">Hangman</h1>
+        </div>
+        <span id="hangman-category-badge" class="chunky bg-accent text-accent-fg status-badge">FOOD</span>
+      </div>
+
+      <div class="game-layout">
+        <!-- Hangman Stage Box -->
+        <div class="panel hangman-stage">
+          <!-- Gallows Paper SVG Drawing -->
+          <div class="gallows-svg-container">
+            <svg class="gallows-svg" viewBox="0 0 160 160">
+              <!-- Base & Stand (Gallows) -->
+              <line x1="20" y1="150" x2="140" y2="150" class="gallows-line" />
+              <line x1="45" y1="150" x2="45" y2="20" class="gallows-line" />
+              <line x1="45" y1="20" x2="110" y2="20" class="gallows-line" />
+              <line x1="45" y1="45" x2="70" y2="20" class="gallows-line" />
+              <line x1="110" y1="20" x2="110" y2="40" class="gallows-line" />
+
+              <!-- Man Body Parts (Opacity 0 by default) -->
+              <!-- 1. Head -->
+              <circle id="hm-head" cx="110" cy="52" r="12" class="gallows-man-head" style="opacity: 0;" />
+              <!-- 2. Body -->
+              <line id="hm-body" x1="110" y1="64" x2="110" y2="105" class="gallows-man" style="opacity: 0;" />
+              <!-- 3. Left Arm -->
+              <line id="hm-arm-l" x1="110" y1="75" x2="90" y2="92" class="gallows-man" style="opacity: 0;" />
+              <!-- 4. Right Arm -->
+              <line id="hm-arm-r" x1="110" y1="75" x2="130" y2="92" class="gallows-man" style="opacity: 0;" />
+              <!-- 5. Left Leg -->
+              <line id="hm-leg-l" x1="110" y1="105" x2="92" y2="135" class="gallows-man" style="opacity: 0;" />
+              <!-- 6. Right Leg -->
+              <line id="hm-leg-r" x1="110" y1="105" x2="128" y2="135" class="gallows-man" style="opacity: 0;" />
+            </svg>
+          </div>
+
+          <!-- Secret Word Display -->
+          <div id="hangman-word-display" class="hangman-word-display">
+            <!-- Word letter slots rendered via hangman.js -->
+          </div>
+
+          <!-- Hint -->
+          <p id="hangman-hint-text" class="text-sm text-muted font-mono">💡 Hint: Loading...</p>
+
+          <!-- On-screen Keyboard -->
+          <div id="hangman-keyboard" class="keyboard-grid">
+            <!-- A-Z Key buttons rendered via hangman.js -->
+          </div>
+        </div>
+
+        <!-- Scorecard Sidebar -->
+        <aside class="space-y-4" style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="panel scorecard-panel">
+            <p class="scorecard-title">SCORECARD</p>
+            <div class="scorecard-row">
+              <span class="scorecard-label">Words Solved</span>
+              <span id="hangman-score-wins" class="scorecard-value player">0</span>
+            </div>
+            <div class="scorecard-row">
+              <span class="scorecard-label">Failed</span>
+              <span id="hangman-score-losses" class="scorecard-value bot">0</span>
+            </div>
+            <div class="scorecard-row">
+              <span class="scorecard-label">Streak</span>
+              <span id="hangman-score-streak" class="scorecard-value draw">0</span>
+            </div>
+          </div>
+
+          <div class="panel scorecard-panel" style="gap: 0.5rem;">
+            <label for="hangman-category-select" class="scorecard-title">CATEGORY</label>
+            <select id="hangman-category-select" class="chunky" style="padding: 0.5rem; font-size: 0.85rem; width: 100%;">
+              <option value="all" selected>All Categories</option>
+              <option value="food">🍕 Food & Drinks</option>
+              <option value="animals">🦁 Animals & Wildlife</option>
+              <option value="movies">🎬 Movies & Cinema</option>
+              <option value="countries">🌍 Countries & Travel</option>
+              <option value="science">🔬 Science & Physics</option>
+              <option value="technology">💻 Tech & Code</option>
+              <option value="arcade">🕹️ Arcade Classics</option>
+              <option value="space">🚀 Cosmos & Stars</option>
+              <option value="nature">🌿 Nature & Earth</option>
+            </select>
+          </div>
+
+          <div class="ticket" style="padding: 1rem;">
+            <span id="hangman-mistakes-text" class="font-bold">Mistakes: 0 / 6</span><br>
+            Guess letters with on-screen buttons or type on your keyboard!
+          </div>
+
+          <button id="hangman-new-word-btn" class="chunky bg-secondary" style="padding: 0.75rem 1rem; width: 100%;">
+            Next Word
+          </button>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MODAL OVERLAY ==================== -->
+  <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <div id="modal-emoji" class="modal-emoji">🤝</div>
+      <h2 id="modal-title" class="modal-title">Draw</h2>
+      <p id="modal-message" class="modal-message">Nobody blinked. That counts.</p>
+      <div class="modal-actions">
+        <button id="modal-action-btn" class="chunky bg-primary text-primary-fg">Next Round</button>
+        <button id="modal-lobby-btn" class="chunky bg-paper">Lobby</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ARCADE FOOTER ==================== -->
+  <footer>
+    <div class="ticket footer-ticket">
+      <span class="font-display text-xs font-bold" style="letter-spacing: 0.15em;">ADMIT ONE · ARCADE</span>
+      <span>Three games. Endless rematches.</span>
+    </div>
+  </footer>
+
+  <!-- App Scripts -->
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>

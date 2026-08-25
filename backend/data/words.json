@@ -1,0 +1,95 @@
+{
+  "categories": {
+    "food": [
+      { "word": "PIZZA", "hint": "Italian baked flatbread with cheese and toppings" },
+      { "word": "HAMBURGER", "hint": "Grilled patty served inside a sliced bun" },
+      { "word": "SUSHI", "hint": "Japanese dish featuring vinegared rice and seafood" },
+      { "word": "CROISSANT", "hint": "Flaky, buttery French crescent-shaped pastry" },
+      { "word": "CHOCOLATE", "hint": "Sweet treat made from roasted cacao beans" },
+      { "word": "SPAGHETTI", "hint": "Long, thin cylindrical pasta often served with sauce" },
+      { "word": "GUACAMOLE", "hint": "Avocado-based dip seasoned with lime and cilantro" },
+      { "word": "BURRITO", "hint": "Flour tortilla wrapped around seasoned fillings" },
+      { "word": "CHEESECAKE", "hint": "Rich dessert with a sweet cheese filling on a crumb crust" },
+      { "word": "PANCAKES", "hint": "Flat breakfast cakes cooked on a griddle with syrup" },
+      { "word": "ICE CREAM", "hint": "Frozen dairy dessert available in endless flavors" },
+      { "word": "BARBECUE", "hint": "Meat slowly smoked or grilled with tangy sauce" }
+    ],
+    "animals": [
+      { "word": "ELEPHANT", "hint": "Largest living land mammal with iconic tusks and trunk" },
+      { "word": "KANGAROO", "hint": "Australian marsupial that hops on powerful hind legs" },
+      { "word": "DOLPHIN", "hint": "Highly intelligent marine mammal known for playful acrobatics" },
+      { "word": "PENGUIN", "hint": "Flightless aquatic bird thriving in polar climates" },
+      { "word": "CHEETAH", "hint": "Fastest land animal capable of blazing sprint speeds" },
+      { "word": "OCTOPUS", "hint": "Eight-armed sea creature with three hearts and blue blood" },
+      { "word": "FLAMINGO", "hint": "Wading bird famous for vibrant pink feathers and balancing on one leg" },
+      { "word": "CHAMELEON", "hint": "Lizard renowned for changing skin patterns and rotating eyes" },
+      { "word": "GORILLA", "hint": "Powerful ground-dwelling great ape inhabiting African forests" },
+      { "word": "PLATYPUS", "hint": "Unique egg-laying mammal with a duck-like bill" }
+    ],
+    "movies": [
+      { "word": "BLOCKBUSTER", "hint": "Massively popular and financially successful movie" },
+      { "word": "CINEMA", "hint": "Theater where films are projected onto the silver screen" },
+      { "word": "DIRECTOR", "hint": "Visionary leader guiding actors and crew on a film set" },
+      { "word": "POPCORN", "hint": "Classic buttery snack enjoyed during movie screenings" },
+      { "word": "ANIMATION", "hint": "Technique creating the illusion of movement through drawings or CGI" },
+      { "word": "HOLLYWOOD", "hint": "Famous district in Los Angeles synonymous with American cinema" },
+      { "word": "SUPERHERO", "hint": "Costumed champion battling villains with extraordinary powers" },
+      { "word": "SCREENPLAY", "hint": "The written script detailing dialogue and scene directions" },
+      { "word": "SOUNDTRACK", "hint": "Original musical score accompanying a film" }
+    ],
+    "countries": [
+      { "word": "JAPAN", "hint": "Island nation known for cherry blossoms, anime, and Mount Fuji" },
+      { "word": "BRAZIL", "hint": "Largest South American country famous for Samba and the Amazon" },
+      { "word": "AUSTRALIA", "hint": "Continent nation renowned for the Great Barrier Reef and Outback" },
+      { "word": "SWITZERLAND", "hint": "Alpine country celebrated for chocolate, watches, and snowy peaks" },
+      { "word": "CANADA", "hint": "Vast northern nation celebrated for maple syrup and natural lakes" },
+      { "word": "EGYPT", "hint": "Ancient land of the Pharaohs, the Nile, and the Great Pyramids" },
+      { "word": "ITALY", "hint": "Boot-shaped European nation famous for art, Roman ruins, and culinary wonders" },
+      { "word": "ARGENTINA", "hint": "South American nation renowned for Tango music and Patagonia" },
+      { "word": "NORWAY", "hint": "Scandinavian country famous for spectacular fjords and northern lights" }
+    ],
+    "science": [
+      { "word": "MOLECULE", "hint": "Group of atoms bonded together representing the smallest unit of a chemical compound" },
+      { "word": "GRAVITY", "hint": "Fundamental natural force attracting objects toward one another" },
+      { "word": "PHOTOSYNTHESIS", "hint": "Process by which green plants synthesize nutrients using sunlight" },
+      { "word": "ELECTRICITY", "hint": "Form of energy resulting from the movement of charged particles" },
+      { "word": "MICROSCOPE", "hint": "Optical instrument used for viewing minuscule objects" },
+      { "word": "ECOSYSTEM", "hint": "Biological community of interacting organisms and their physical environment" },
+      { "word": "ATMOSPHERE", "hint": "Envelope of gases surrounding the Earth or another planet" },
+      { "word": "VELOCITY", "hint": "Speed of an object in a given specific direction" }
+    ],
+    "arcade": [
+      { "word": "JOYSTICK", "hint": "Manual controller with a stick and buttons" },
+      { "word": "HIGH SCORE", "hint": "The ultimate leaderboard achievement" },
+      { "word": "PIXEL", "hint": "Smallest unit of a digital image" },
+      { "word": "PACMAN", "hint": "Iconic yellow dot-eating arcade character" },
+      { "word": "INSERT COIN", "hint": "Classic prompt to start an arcade match" },
+      { "word": "GAME OVER", "hint": "The final screen when lives run out" },
+      { "word": "CHECKPOINT", "hint": "A spot where your progress is saved" },
+      { "word": "POWER UP", "hint": "An item that boosts your character's ability" }
+    ],
+    "technology": [
+      { "word": "ALGORITHM", "hint": "Step-by-step procedure for solving a problem" },
+      { "word": "JAVASCRIPT", "hint": "The programming language of the web" },
+      { "word": "CYBERSPACE", "hint": "The virtual world of computers and networks" },
+      { "word": "QUANTUM", "hint": "Next-generation computing model based on qubits" },
+      { "word": "DATABASE", "hint": "Organized collection of structured data" },
+      { "word": "FIREWALL", "hint": "Network security barrier protecting data" },
+      { "word": "COMPILER", "hint": "Translates code into machine instructions" }
+    ],
+    "space": [
+      { "word": "SUPERNOVA", "hint": "A massive stellar explosion" },
+      { "word": "ASTEROID", "hint": "Rocky body orbiting the Sun" },
+      { "word": "TELESCOPE", "hint": "Optical instrument for observing distant stars" },
+      { "word": "CONSTELLATION", "hint": "Group of stars forming a recognizable pattern" },
+      { "word": "BLACK HOLE", "hint": "Region of space where gravity prevents even light from escaping" },
+      { "word": "ANDROMEDA", "hint": "Nearest major galaxy to our Milky Way" }
+    ],
+    "nature": [
+      { "word": "RAINFOREST", "hint": "Lush, dense tropical woodland with high rainfall" },
+      { "word": "VOLCANO", "hint": "A mountain opening downward to a pool of molten rock" },
+      { "word": "AVALANCHE", "hint": "Rapid flow of snow down a sloping surface" },
+      { "word": "AURORA", "hint": "Natural luminous atmospheric phenomenon in polar skies" }
+    ]
+  }
+}
