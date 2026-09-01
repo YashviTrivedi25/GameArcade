@@ -7,7 +7,7 @@ A clean, beautiful, and tactile retro paper notebook arcade featuring three game
 ## 📁 Project Structure
 
 ```
-World Builder _ Lovable_files/
+GameArcade/
 ├── backend/
 │   ├── app.py                         # Main Flask application & static server
 │   ├── requirements.txt               # Flask, flask-cors dependencies
@@ -39,8 +39,12 @@ World Builder _ Lovable_files/
 │       └── images/                    # Clean game thumbnails
 │
 ├── package.json                       # Root script configuration
+├── ARCHITECTURE.md                   # Full technical specification & technology comparison
 └── README.md                          # Project documentation
 ```
+
+> 📖 **Deep Dive**: For a complete analysis of why each technology and algorithm was chosen alongside alternative tech comparisons, see [ARCHITECTURE.md](file:///Users/yashvitrivedi/Desktop/GameArcade/ARCHITECTURE.md).
+
 
 ---
 

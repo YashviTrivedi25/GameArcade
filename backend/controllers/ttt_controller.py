@@ -120,3 +120,12 @@ def handle_ttt_move():
         })
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+def handle_ttt_pvp_record():
+    try:
+        data = request.get_json() or {}
+        outcome = data.get("outcome", "draw") # p1, p2, draw
+        scores = arcade_store.update_ttt_pvp_score(outcome)
+        return jsonify({"scores": scores})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500

@@ -10,6 +10,12 @@ class ArcadeStore:
                 "streak": 0,
                 "rounds": 0
             },
+            "ttt_pvp": {
+                "p1Wins": 0,
+                "p2Wins": 0,
+                "draws": 0,
+                "rounds": 0
+            },
             "rps": {
                 "playerWins": 0,
                 "botWins": 0,
@@ -47,6 +53,16 @@ class ArcadeStore:
         else:
             self.scores["ttt"]["draws"] += 1
         return self.scores["ttt"]
+
+    def update_ttt_pvp_score(self, result):
+        self.scores["ttt_pvp"]["rounds"] += 1
+        if result == "p1":
+            self.scores["ttt_pvp"]["p1Wins"] += 1
+        elif result == "p2":
+            self.scores["ttt_pvp"]["p2Wins"] += 1
+        else:
+            self.scores["ttt_pvp"]["draws"] += 1
+        return self.scores["ttt_pvp"]
 
     def update_rps_score(self, result, player_move, bot_move, mode="best3"):
         self.scores["rps"]["seriesMode"] = mode
@@ -105,6 +121,10 @@ class ArcadeStore:
         if game == "ttt":
             self.scores["ttt"] = {
                 "playerWins": 0, "botWins": 0, "draws": 0, "streak": 0, "rounds": 0
+            }
+        elif game == "ttt_pvp":
+            self.scores["ttt_pvp"] = {
+                "p1Wins": 0, "p2Wins": 0, "draws": 0, "rounds": 0
             }
         elif game == "rps":
             self.scores["rps"] = {

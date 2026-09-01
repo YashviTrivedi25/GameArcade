@@ -1,6 +1,6 @@
 import datetime
 from flask import Blueprint, jsonify
-from controllers.ttt_controller import handle_ttt_move
+from controllers.ttt_controller import handle_ttt_move, handle_ttt_pvp_record
 from controllers.rps_controller import handle_rps_play, handle_rps_reset_series
 from controllers.hangman_controller import start_hangman_game, guess_hangman_letter
 from controllers.score_controller import get_scores, reset_scores
@@ -20,6 +20,10 @@ def health():
 @api_bp.route('/ttt/move', methods=['POST'])
 def ttt_move():
     return handle_ttt_move()
+
+@api_bp.route('/ttt/pvp-record', methods=['POST'])
+def ttt_pvp_record():
+    return handle_ttt_pvp_record()
 
 # Rock-Paper-Scissors Routes
 @api_bp.route('/rps/play', methods=['POST'])

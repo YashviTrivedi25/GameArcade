@@ -4,8 +4,8 @@
   "description": "Paper Arcade - Clean Fullstack Arcade with Python (Flask) Backend and Vanilla JavaScript Frontend",
   "type": "module",
   "scripts": {
-    "start": "python3 backend/app.py",
-    "dev": "python3 backend/app.py"
+    "start": "if [ -f .venv/bin/python ]; then .venv/bin/python backend/app.py; else python3 backend/app.py; fi",
+    "dev": "if [ -f .venv/bin/python ]; then .venv/bin/python backend/app.py; else python3 backend/app.py; fi"
   },
   "author": "Paper Arcade",
   "license": "MIT"

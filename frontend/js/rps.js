@@ -66,6 +66,13 @@ export class RpsGame {
     this.updateSeriesDisplay();
   }
 
+  // Called whenever user opens / navigates to the RPS table
+  onEnterView() {
+    this.isAnimating = false;
+    this.disableChoiceButtons(false);
+    this.resetFighterCards();
+  }
+
   async playRound(playerMove) {
     if (this.isAnimating) return;
     this.isAnimating = true;
@@ -139,14 +146,14 @@ export class RpsGame {
   }
 
   getModeLabel() {
-    if (this.seriesMode === 'best3') return 'Best of 3 (First to 2)';
-    if (this.seriesMode === 'best5') return 'Best of 5 (First to 3)';
+    if (this.seriesMode === 'best3') return 'First to 3 Wins';
+    if (this.seriesMode === 'best5') return 'First to 5 Wins';
     return 'Endless Mode';
   }
 
   updateSeriesDisplay(series) {
     if (!this.seriesTrackerEl) return;
-    const target = this.seriesMode === 'best3' ? 2 : this.seriesMode === 'best5' ? 3 : null;
+    const target = this.seriesMode === 'best3' ? 3 : this.seriesMode === 'best5' ? 5 : null;
     const pWins = series ? series.playerWins : (this.scores.seriesPlayerWins || 0);
     const bWins = series ? series.botWins : (this.scores.seriesBotWins || 0);
 

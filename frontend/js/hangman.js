@@ -59,13 +59,22 @@ export class HangmanGame {
     // Physical keyboard listener
     window.addEventListener('keydown', (e) => {
       const char = e.key.toUpperCase();
-      if (/^[A-Z]$/.test(char) && document.getElementById('view-words').classList.contains('active')) {
+      const isWordsActive = document.getElementById('view-words')?.classList.contains('active');
+      const isModalOpen = document.getElementById('modal-overlay')?.classList.contains('active');
+      if (/^[A-Z]$/.test(char) && isWordsActive && !isModalOpen) {
         this.handleGuess(char);
       }
     });
 
     this.renderKeyboard();
     this.startNewGame();
+  }
+
+  // Called whenever user opens / navigates to the Hangman table
+  onEnterView() {
+    if (this.isGameOver || !this.sessionId) {
+      this.startNewGame();
+    }
   }
 
   async startNewGame() {

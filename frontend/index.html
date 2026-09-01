@@ -22,7 +22,37 @@
       <a href="#hands" data-view="hands" class="chunky bg-paper">Hands</a>
       <a href="#grid" data-view="grid" class="chunky bg-paper">Grid</a>
       <a href="#words" data-view="words" class="chunky bg-paper">Words</a>
-      <button id="sound-toggle-btn" class="chunky bg-secondary sound-toggle-btn" aria-label="Toggle Sound">🔊 Sound FX</button>
+      
+      <!-- Audio & Volume Controller -->
+      <div class="sound-control-wrapper">
+        <button id="sound-toggle-btn" class="chunky bg-secondary sound-toggle-btn" aria-label="Audio and Volume Settings" aria-expanded="false" aria-haspopup="true">
+          <span id="sound-btn-icon">🔊</span>
+          <span id="sound-btn-label">Sound FX</span>
+        </button>
+
+        <div id="sound-popover" class="sound-popover panel hidden" role="region" aria-label="Sound Settings">
+          <div class="sound-popover-header">
+            <span class="font-display font-bold text-xs">AUDIO SETTINGS</span>
+            <button id="sound-popover-close" class="sound-popover-close" aria-label="Close Sound Settings">✕</button>
+          </div>
+          
+          <div class="sound-popover-row">
+            <label for="sound-volume-slider" class="text-xs font-bold">VOLUME</label>
+            <span id="sound-volume-val" class="font-mono text-xs font-bold text-primary">80%</span>
+          </div>
+          
+          <input type="range" id="sound-volume-slider" class="sound-volume-slider" min="0" max="100" value="80" step="1" aria-label="Volume Slider">
+
+          <div class="sound-popover-actions">
+            <button id="sound-mute-btn" class="chunky bg-paper sound-popover-btn" style="flex: 1; font-size: 0.8rem; padding: 0.45rem;">
+              🔇 Mute
+            </button>
+            <button id="sound-test-btn" class="chunky bg-primary text-primary-fg sound-popover-btn" style="flex: 1; font-size: 0.8rem; padding: 0.45rem;">
+              🎵 Test
+            </button>
+          </div>
+        </div>
+      </div>
     </nav>
   </header>
 
@@ -150,8 +180,8 @@
           <div class="panel scorecard-panel" style="gap: 0.5rem;">
             <label for="rps-mode-select" class="scorecard-title">MATCH FORMAT</label>
             <select id="rps-mode-select" class="chunky" style="padding: 0.5rem; font-size: 0.85rem; width: 100%;">
-              <option value="best3" selected>Best of 3 (First to 2)</option>
-              <option value="best5">Best of 5 (First to 3)</option>
+              <option value="best3" selected>First to 3 Wins</option>
+              <option value="best5">First to 5 Wins</option>
               <option value="endless">Endless Rematches</option>
             </select>
             <button id="rps-reset-series-btn" class="chunky bg-secondary" style="margin-top: 0.5rem; padding: 0.5rem; font-size: 0.8rem; width: 100%;">
@@ -176,7 +206,7 @@
           <p class="table-tag">TABLE 02</p>
           <h1 class="game-title">Tic Tac Toe</h1>
         </div>
-        <span class="chunky bg-accent text-accent-fg status-badge">vs BOT</span>
+        <span id="ttt-status-badge" class="chunky bg-accent text-accent-fg status-badge">vs BOT</span>
       </div>
 
       <div class="game-layout">
@@ -190,10 +220,18 @@
 
         <!-- Scorecard Sidebar -->
         <aside class="space-y-4" style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="panel scorecard-panel" style="gap: 0.5rem;">
+            <label for="ttt-mode-select" class="scorecard-title">GAME MODE</label>
+            <select id="ttt-mode-select" class="chunky" style="padding: 0.5rem; font-size: 0.85rem; width: 100%;">
+              <option value="bot" selected>🤖 vs Bot (AI)</option>
+              <option value="pvp">👥 2 Players (Pass &amp; Play)</option>
+            </select>
+          </div>
+
           <div class="panel scorecard-panel">
             <p class="scorecard-title">SCORECARD</p>
             <div class="scorecard-row">
-              <span class="scorecard-label">You (X)</span>
+              <span id="ttt-label-player" class="scorecard-label">You (X)</span>
               <span id="ttt-score-player" class="scorecard-value player">0</span>
             </div>
             <div class="scorecard-row">
@@ -201,12 +239,12 @@
               <span id="ttt-score-draws" class="scorecard-value draw">0</span>
             </div>
             <div class="scorecard-row">
-              <span class="scorecard-label">Bot (O)</span>
+              <span id="ttt-label-bot" class="scorecard-label">Bot (O)</span>
               <span id="ttt-score-bot" class="scorecard-value bot">0</span>
             </div>
           </div>
 
-          <div class="panel scorecard-panel" style="gap: 0.5rem;">
+          <div id="ttt-difficulty-container" class="panel scorecard-panel" style="gap: 0.5rem;">
             <label for="ttt-difficulty-select" class="scorecard-title">BOT DIFFICULTY</label>
             <select id="ttt-difficulty-select" class="chunky" style="padding: 0.5rem; font-size: 0.85rem; width: 100%;">
               <option value="impossible" selected>Impossible (Minimax)</option>
@@ -215,7 +253,7 @@
             </select>
           </div>
 
-          <div class="ticket" style="padding: 1rem;">
+          <div id="ttt-info-ticket" class="ticket" style="padding: 1rem;">
             The bot calculates optimal Minimax states. Grinding out draws is the real game!
           </div>
 

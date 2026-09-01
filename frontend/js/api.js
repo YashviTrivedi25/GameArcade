@@ -24,6 +24,22 @@ export const api = {
     }
   },
 
+  // Tic-Tac-Toe 2-Player (PvP) Score Record
+  async recordTttPvp(outcome) {
+    try {
+      const res = await fetch(`${API_BASE}/ttt/pvp-record`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ outcome })
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.json();
+    } catch (err) {
+      console.warn('[Paper Arcade] Backend offline, recording PvP score locally:', err);
+      return { scores: null };
+    }
+  },
+
   // Rock-Paper-Scissors Play
   async playRps(move, mode = 'best3') {
     try {

@@ -62,7 +62,7 @@ def handle_rps_play():
         updated_scores = arcade_store.update_rps_score(result, player_move, bot_move, mode)
 
         # Check match series progress
-        target_wins = 2 if mode == "best3" else 3 if mode == "best5" else None
+        target_wins = 3 if mode == "best3" else 5 if mode == "best5" else None
         is_series_over = False
         series_winner = None
 
